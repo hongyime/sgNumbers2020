@@ -1,20 +1,27 @@
 # STATE — sgNumbers2020
 
-**Updated**: 2026-09-16
+**Updated**: 2026-09-22
 **Agent**: opencode (Sisyphus-Junior)
-**Task**: Baseline wave-2b review
+
+## Last change — 2026-09-22
+
+Fixed broken `label.yml` workflow that was blocking all Dependabot PRs. Same
+root cause as sgNRIC2003/sgNRICgenerator65: two bugs in
+`.github/workflows/label.yml`:
+
+1. **Wrong config path** — workflow pointed to `.github/labeler.yml` (does not
+   exist); actual labels file is `.github/labels.yml`.
+2. **Missing permissions block** — `permissions: pull-requests: write` was
+   absent, causing the label step to fail with a 403.
+
+Both fixed identically. Label check now passes. Dependabot PRs #85 and #84
+were subsequently merged.
 
 ## Status
-COMPLETE — baseline review done, no issues found.
 
-## Stack
-Python script · stdlib only (writes SG phone numbers 6xxx/8xxx/9xxx to .txt files)
+DONE — label workflow fixed, PRs #85 and #84 merged.
+Ended because: task complete.
 
-## Findings
-- 1 open PR: #79 dependabot setup-python bump (actions/setup-python 6→7) — safe to merge
-- No hardcoded secrets in .py/.js/.html
-- Clean working tree on master
-- Previously audited: AUDIT_LOG.md, AUDIT.md, security_audit.md present
+## Next steps
 
-## Next Steps
-Review and merge PR #79 (dependabot setup-python bump).
+None. Repo is healthy. Monitor future Dependabot PRs as they arrive.
